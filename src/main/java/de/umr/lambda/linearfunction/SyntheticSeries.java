@@ -1,8 +1,6 @@
 package de.umr.lambda.linearfunction;
 
-import java.util.*;
-
-import static de.umr.lambda.linearfunction.LineFitter.fitLine;
+import java.util.Random;
 
 public class SyntheticSeries {
 
@@ -39,10 +37,11 @@ public class SyntheticSeries {
                                 + r.nextGaussian() * 0.15;
             }
 
-//            for (int win = 0; win < k; win++) {
-//                int start = win * w, end = start + w;
-//                d.lines[s][win] = fitLine(d.series[s], start, end);
-//            }
+            for (int win = 0; win < k; win++) {
+                int start = win * w;
+                int end = start + w;
+                d.lines[s][win] = LineFitter.fitLineL2(d.series[s], start, end);
+            }
         }
         return d;
     }
